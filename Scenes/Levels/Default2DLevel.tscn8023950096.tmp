@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqpllpttx4007"]
+
+[ext_resource type="PackedScene" uid="uid://c8s44ierjta41" path="res://Scenes/Players/Player.tscn" id="1_gxnw2"]
+[ext_resource type="Script" uid="uid://siscm8h1bkdk" path="res://Scenes/Levels/level_manager.gd" id="1_kbv3w"]
+[ext_resource type="PackedScene" uid="uid://dxhhjae5lsxpn" path="res://Scenes/Players/bulletPool.tscn" id="2_pxm5p"]
+[ext_resource type="PackedScene" uid="uid://chjfk0pkwd6vf" path="res://Scenes/Players/flag.tscn" id="3_elv66"]
+[ext_resource type="PackedScene" uid="uid://s07otxsstpk0" path="res://Scenes/Players/Walls.tscn" id="4_ld47c"]
+
+[node name="Default2dLevel" type="Node2D"]
+script = ExtResource("1_kbv3w")
+
+[node name="Player" parent="." instance=ExtResource("1_gxnw2")]
+position = Vector2(552, 325)
+gun_distance = 100.0
+
+[node name="BulletPool" parent="." instance=ExtResource("2_pxm5p")]
+
+[node name="Flag" parent="." instance=ExtResource("3_elv66")]
+position = Vector2(-266, -22)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Walls" parent="." instance=ExtResource("4_ld47c")]
+position = Vector2(23, -736)
+scale = Vector2(3.16, 1)
+
+[node name="Walls2" parent="." instance=ExtResource("4_ld47c")]
+position = Vector2(63, 733)
+scale = Vector2(3.16, 1)
+
+[node name="Walls3" parent="." instance=ExtResource("4_ld47c")]
+position = Vector2(1300, 183)
+rotation = 1.5708
+scale = Vector2(3.16, 1)
+
+[node name="Walls4" parent="." instance=ExtResource("4_ld47c")]
+position = Vector2(-1292, 148)
+rotation = 1.5708
+scale = Vector2(3.16, 1)

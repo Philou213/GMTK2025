@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8s44ierjta41"]
+
+[ext_resource type="Script" uid="uid://vd2par6c7ds5" path="res://Scripts/Entities/player.gd" id="1_uojif"]
+[ext_resource type="Texture2D" uid="uid://v52epvhboa1c" path="res://Assets/Sprites/character.tres" id="2_ufqi5"]
+[ext_resource type="PackedScene" uid="uid://cxyvdxqteqdw4" path="res://Scenes/Players/gun.tscn" id="3_ufqi5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufqi5"]
+size = Vector2(30, 30)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(2, 2)
+motion_mode = 1
+script = ExtResource("1_uojif")
+SPEED = 600.0
+gun_distance = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ufqi5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 1, 1)
+texture = ExtResource("2_ufqi5")
+
+[node name="Gun" parent="." instance=ExtResource("3_ufqi5")]
+position = Vector2(-17, 1)

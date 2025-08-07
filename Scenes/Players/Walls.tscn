@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://s07otxsstpk0"]
+
+[ext_resource type="Texture2D" uid="uid://dbgo1qklyynha" path="res://Assets/Sprites/moving_outline_texture.png" id="1_1yqhg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6ds2"]
+size = Vector2(1000, 30)
+
+[node name="Walls" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s6ds2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2.49997, 0.5)
+scale = Vector2(45.2813, 1.75)
+texture = ExtResource("1_1yqhg")

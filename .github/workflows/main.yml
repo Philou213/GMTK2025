@@ -1,0 +1,110 @@
+name: Steam Auto Upload
+
+on:
+  push:
+    tags:
+      - "release-*"
+      - "dev-*"
+      
+permissions:
+  actions: write
+  contents: read
+  
+jobs:
+  export-and-upload:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Game Repository
+        uses: actions/checkout@v4
+
+      - name: Determine Build Type
+        run: |
+          TAG="${GITHUB_REF##*/}"
+          if [[ "$TAG" == release-demo-* ]]; then
+            echo "APP_ID=${{ secrets.STEAM_DEMO_APP_ID }}" >> $GITHUB_ENV
+            echo "DEPOT_WIN=${{ secrets.STEAM_DEMO_DEPOT_WIN }}" >> $GITHUB_ENV
+            echo "DEPOT_LINUX=${{ secrets.STEAM_DEMO_DEPOT_LINUX }}" >> $GITHUB_ENV
+          elif [[ "$TAG" == release-* || "$TAG" == dev-* ]]; then
+            echo "APP_ID=${{ secrets.STEAM_APP_ID }}" >> $GITHUB_ENV
+            echo "DEPOT_WIN=${{ secrets.STEAM_DEPOT_WIN }}" >> $GITHUB_ENV
+            echo "DEPOT_LINUX=${{ secrets.STEAM_DEPOT_LINUX }}" >> $GITHUB_ENV
+          else
+            echo "Not a recognized release tag. Exiting."
+            exit 0
+          fi
+
+      - name: Ensure Docker is Running
+        run: |
+          sudo systemctl start docker
+          sudo systemctl enable docker
+          docker --version
+
+      - name: Export Game
+        run: |
+          mkdir -p build/windows build/linux
+          docker run --rm -v "$PWD":/workspace -w /workspace barichello/godot-ci:4.4.1 \
+            godot --headless --export-release "Windows" build/windows/PieceByPiece.exe
+          docker run --rm -v "$PWD":/workspace -w /workspace barichello/godot-ci:4.4.1 \
+            godot --headless --export-release "Linux" build/linux/PieceByPiece
+
+      - name: Extract Git Tag
+        run: echo "TAG=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Prepare Steam Build Script
+        run: |
+          sed -e "s/\$APP_ID/${{ env.APP_ID }}/" \
+              -e "s/\$DEPOT_WIN/${{ env.DEPOT_WIN }}/" \
+              -e "s/\$DEPOT_LINUX/${{ env.DEPOT_LINUX }}/" \
+              -e "s/\$TAG/${GITHUB_REF##*/}/" \
+              .github/workflows/steam_build.template.vdf > steam_build.vdf
+
+      - name: Download and Install SteamCMD
+        run: |
+          mkdir -p ~/steamcmd
+          cd ~/steamcmd
+          curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" -o steamcmd_linux.tar.gz
+          tar -xzf steamcmd_linux.tar.gz
+          
+      - name: Generate Steam TOTP Code
+        id: steam_totp
+        uses: cyberandrii/steam-totp@v1
+        with:
+          shared_secret: ${{ secrets.STEAM_SHARED_SECRET }}
+          
+      - name: Upload to Steam
+        run: |
+          echo "Trying SteamCMD login using TOTP..."
+
+          set +e
+          ~/steamcmd/steamcmd.sh +login "${{ secrets.STEAM_USERNAME }}" "${{ secrets.STEAM_PASSWORD }}" "${{ steps.steam_totp.outputs.code }}" +run_app_build "$GITHUB_WORKSPACE/steam_build.vdf" +quit
+          RESULT=$?
+          set -e
+
+          if [[ $RESULT -ne 0 ]]; then
+            echo "::error ::SteamCMD login failed. TOTP or credentials may be incorrect. Rerun this job or check the shared secret."
+            exit 1
+          else
+            echo "✅ SteamCMD login with TOTP succeeded."
+          fi
+
+      - name: Retrieve Latest Build ID
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+          response=$(curl -s "https://partner.steam-api.com/ISteamApps/GetAppBuilds/v1/?key=${{ secrets.STEAM_API_KEY }}&appid=${APP_ID}&count=1")
+          BUILD_ID=$(echo "$response" | jq -r '.response.builds | to_entries | max_by(.value.CreationTime) | .value.BuildID')
+          echo "BUILD_ID=$BUILD_ID" >> $GITHUB_ENV
+
+      - name: Set Build Live
+        run: |
+          if [[ "$GITHUB_REF" == refs/tags/dev-* ]]; then
+            beta_key="development"
+          else
+            beta_key="public"
+          fi
+          curl -X POST "https://partner.steam-api.com/ISteamApps/SetAppBuildLive/v2/" \
+            -d "key=${{ secrets.STEAM_API_KEY }}" \
+            -d "appid=${{ env.APP_ID }}" \
+            -d "buildid=${{ env.BUILD_ID }}" \
+            -d "betakey=${beta_key}" \
+            -d "steamid=${{ secrets.STEAM_USER_ID }}" \
+            -d "description=${GITHUB_REF##*/}"

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8qoy63y1veek"]
+
+[ext_resource type="Script" uid="uid://cijb3lyvyqd7i" path="res://Scenes/Players/extract_area.gd" id="1_lslw5"]
+[ext_resource type="Texture2D" uid="uid://dbgo1qklyynha" path="res://Assets/Sprites/moving_outline_texture.png" id="2_al5ef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6ds2"]
+size = Vector2(1020, 50)
+
+[node name="Extract" type="Area2D"]
+script = ExtResource("1_lslw5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s6ds2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 19)
+scale = Vector2(46.36, 1)
+texture = ExtResource("2_al5ef")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo73l65b1eorm"]
+
+[ext_resource type="Script" uid="uid://bv18jfovh8m5v" path="res://Scenes/Players/ghost.gd" id="1_42mv1"]
+[ext_resource type="Texture2D" uid="uid://v52epvhboa1c" path="res://Assets/Sprites/character.tres" id="2_42mv1"]
+[ext_resource type="PackedScene" uid="uid://cxyvdxqteqdw4" path="res://Scenes/Players/gun.tscn" id="3_gv1i5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_42mv1"]
+size = Vector2(40, 40)
+
+[node name="Ghost" type="CharacterBody2D" groups=["Ghost"]]
+scale = Vector2(2, 2)
+motion_mode = 1
+script = ExtResource("1_42mv1")
+gun_distance = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_42mv1")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(100, 0.003, 0.002, 1)
+texture = ExtResource("2_42mv1")
+
+[node name="Gun" parent="." instance=ExtResource("3_gv1i5")]
+position = Vector2(15, 0)

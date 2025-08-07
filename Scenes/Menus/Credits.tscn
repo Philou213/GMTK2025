@@ -1,0 +1,266 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5ui348xrja2j"]
+
+[ext_resource type="Script" uid="uid://rpqa4y10ikcg" path="res://Scripts/credits.gd" id="1_jgnww"]
+[ext_resource type="Script" uid="uid://cq7cboq7cayw0" path="res://Scripts/Buttons/GamepadUI.gd" id="2_m0gci"]
+[ext_resource type="FontFile" uid="uid://b51e4e1htly8h" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="2_yqpi3"]
+[ext_resource type="LabelSettings" uid="uid://cw355ejs16c6d" path="res://Assets/Fonts/label_settings.tres" id="3_6aw2s"]
+[ext_resource type="Script" uid="uid://dma16kredqnfv" path="res://Scripts/floating_ui.gd" id="3_xtxaf"]
+[ext_resource type="PackedScene" uid="uid://dwg5gvl6rrjeg" path="res://Scenes/Menus/BackButton.tscn" id="5_degih"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_41kea"]
+font = ExtResource("2_yqpi3")
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2sc2g"]
+font = ExtResource("2_yqpi3")
+font_size = 30
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="Credits" type="Node2D"]
+script = ExtResource("1_jgnww")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Credits" type="Control" parent="." node_paths=PackedStringArray("FirstControl")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.895, 1.895)
+script = ExtResource("2_m0gci")
+FirstControl = NodePath("Back/Button")
+
+[node name="Title" type="Label" parent="Credits"]
+layout_mode = 2
+offset_left = -362.0
+offset_top = -306.0
+offset_right = -64.0
+offset_bottom = -279.0
+scale = Vector2(2.43669, 2.43669)
+text = "CREDITS"
+label_settings = ExtResource("3_6aw2s")
+horizontal_alignment = 1
+script = ExtResource("3_xtxaf")
+
+[node name="Back" parent="Credits" instance=ExtResource("5_degih")]
+layout_mode = 1
+offset_left = -678.628
+offset_top = -305.013
+offset_right = -678.628
+offset_bottom = -305.013
+
+[node name="Sounds" type="VBoxContainer" parent="Credits"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+offset_left = -280.739
+offset_top = 24.8021
+offset_right = 419.261
+offset_bottom = 503.802
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 20
+script = ExtResource("3_xtxaf")
+vertical_speed = 0.25
+vertical_intensity = 10.0
+horizontal_speed = 0.5
+
+[node name="SubTitle" type="Label" parent="Credits/Sounds"]
+layout_mode = 2
+text = "SOUND
+"
+label_settings = SubResource("LabelSettings_41kea")
+horizontal_alignment = 1
+
+[node name="Names" type="VBoxContainer" parent="Credits/Sounds"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CenterContainer5" type="CenterContainer" parent="Credits/Sounds/Names"]
+layout_mode = 2
+
+[node name="LinkButton" type="Label" parent="Credits/Sounds/Names/CenterContainer5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yqpi3")
+theme_override_font_sizes/font_size = 18
+text = "Interface sounds - Kenney"
+label_settings = ExtResource("3_6aw2s")
+
+[node name="CenterContainer6" type="CenterContainer" parent="Credits/Sounds/Names"]
+layout_mode = 2
+
+[node name="LinkButton" type="Label" parent="Credits/Sounds/Names/CenterContainer6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yqpi3")
+theme_override_font_sizes/font_size = 18
+text = "Impact sounds - Kenney"
+label_settings = ExtResource("3_6aw2s")
+
+[node name="Music" type="VBoxContainer" parent="Credits"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+offset_left = -247.493
+offset_top = 220.58
+offset_right = 382.506
+offset_bottom = 340.581
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 20
+script = ExtResource("3_xtxaf")
+vertical_speed = 0.25
+vertical_intensity = 10.0
+horizontal_speed = 0.5
+
+[node name="SubTitle" type="Label" parent="Credits/Music"]
+layout_mode = 2
+text = "MUSIC"
+label_settings = SubResource("LabelSettings_41kea")
+horizontal_alignment = 1
+
+[node name="Names" type="VBoxContainer" parent="Credits/Music"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CenterContainer4" type="CenterContainer" parent="Credits/Music/Names"]
+layout_mode = 2
+
+[node name="LinkButton" type="Label" parent="Credits/Music/Names/CenterContainer4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yqpi3")
+theme_override_font_sizes/font_size = 18
+text = "Retro Dealership - Rhapsody"
+label_settings = ExtResource("3_6aw2s")
+
+[node name="Game" type="VBoxContainer" parent="Credits"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+offset_left = -261.741
+offset_top = -183.113
+offset_right = 368.259
+offset_bottom = -18.1131
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 20
+script = ExtResource("3_xtxaf")
+vertical_speed = 0.25
+vertical_intensity = 10.0
+horizontal_speed = 0.5
+
+[node name="SubTitle2" type="Label" parent="Credits/Game"]
+layout_mode = 2
+text = "A Game By"
+label_settings = SubResource("LabelSettings_2sc2g")
+horizontal_alignment = 1
+
+[node name="Names2" type="VBoxContainer" parent="Credits/Game"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CenterContainer2" type="CenterContainer" parent="Credits/Game/Names2"]
+layout_mode = 2
+
+[node name="LinkButton" type="Label" parent="Credits/Game/Names2/CenterContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yqpi3")
+theme_override_font_sizes/font_size = 18
+text = "Philippe St-Laurent-Recoura"
+label_settings = ExtResource("3_6aw2s")
+
+[node name="Assets" type="VBoxContainer" parent="Credits"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+offset_left = -266.491
+offset_top = -92.3483
+offset_right = 393.509
+offset_bottom = 386.652
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 20
+script = ExtResource("3_xtxaf")
+vertical_speed = 0.25
+vertical_intensity = 10.0
+horizontal_speed = 0.5
+
+[node name="SubTitle" type="Label" parent="Credits/Assets"]
+layout_mode = 2
+text = "VISUAL"
+label_settings = SubResource("LabelSettings_41kea")
+horizontal_alignment = 1
+
+[node name="Names" type="VBoxContainer" parent="Credits/Assets"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="CenterContainer9" type="CenterContainer" parent="Credits/Assets/Names"]
+layout_mode = 2
+
+[node name="LinkButton" type="Label" parent="Credits/Assets/Names/CenterContainer9"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yqpi3")
+theme_override_font_sizes/font_size = 18
+text = "Kenney - Glyphs"
+label_settings = ExtResource("3_6aw2s")
+
+[node name="CenterContainer4" type="CenterContainer" parent="Credits/Assets/Names"]
+visible = false
+layout_mode = 2
+
+[node name="LinkButton" type="Label" parent="Credits/Assets/Names/CenterContainer4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yqpi3")
+theme_override_font_sizes/font_size = 18
+text = "Wooden pixel art GUI - Narik"
+label_settings = ExtResource("3_6aw2s")
+
+[node name="CenterContainer6" type="CenterContainer" parent="Credits/Assets/Names"]
+layout_mode = 2
+
+[node name="LinkButton" type="Label" parent="Credits/Assets/Names/CenterContainer6"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yqpi3")
+theme_override_font_sizes/font_size = 18
+text = "Google font - Press Start Font"
+label_settings = ExtResource("3_6aw2s")
+
+[node name="CenterContainer7" type="CenterContainer" parent="Credits/Assets/Names"]
+visible = false
+layout_mode = 2
+
+[node name="LinkButton" type="Label" parent="Credits/Assets/Names/CenterContainer7"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_yqpi3")
+theme_override_font_sizes/font_size = 18
+text = "Pirate bomb - Pixel frog"
+label_settings = ExtResource("3_6aw2s")
+
+[node name="GameEngine" type="VBoxContainer" parent="Credits"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+offset_left = -265.435
+offset_top = 342.48
+offset_right = 394.565
+offset_bottom = 821.481
+scale = Vector2(0.8, 0.8)
+theme_override_constants/separation = 20
+script = ExtResource("3_xtxaf")
+vertical_speed = 0.25
+vertical_intensity = 10.0
+horizontal_speed = 0.5
+
+[node name="SubTitle" type="Label" parent="Credits/GameEngine"]
+layout_mode = 2
+text = "Made in Godot Engine"
+label_settings = ExtResource("3_6aw2s")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Credits/Back/Button" to="." method="_on_back_pressed"]
+
+[editable path="Credits/Back"]

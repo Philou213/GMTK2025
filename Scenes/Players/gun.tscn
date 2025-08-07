@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxyvdxqteqdw4"]
+
+[ext_resource type="Script" uid="uid://daqd04p8cdgqn" path="res://Scripts/Entities/gun.gd" id="1_jxw2e"]
+[ext_resource type="Texture2D" uid="uid://8qwqbiftrp3p" path="res://Assets/Sprites/platform.png" id="1_rbyyv"]
+
+[node name="Gun" type="Node2D"]
+script = ExtResource("1_jxw2e")
+bullet_speed = 1500.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_rbyyv")
+
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2(30, -2)

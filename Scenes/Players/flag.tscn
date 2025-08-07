@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://chjfk0pkwd6vf"]
+
+[ext_resource type="Script" uid="uid://chlmyuti3vuep" path="res://Scenes/Players/flag.gd" id="1_o2dnh"]
+[ext_resource type="Texture2D" uid="uid://drp2ug7ay7mq1" path="res://Assets/Sprites/box.tres" id="2_o2dnh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o2dnh"]
+radius = 40.0
+
+[node name="Flag" type="Area2D"]
+script = ExtResource("1_o2dnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o2dnh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(100, 100, 0, 1)
+position = Vector2(0, 0.500001)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_o2dnh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

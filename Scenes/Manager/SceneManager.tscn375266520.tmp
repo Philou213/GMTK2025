@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxgrba7hrmmij"]
+
+[ext_resource type="Script" uid="uid://dl8swqx65ukxg" path="res://Scripts/Manager/SceneManager.gd" id="1_yswi4"]
+
+[sub_resource type="Resource" id="Resource_1s4jo"]
+metadata/__load_path__ = "res://Assets/Gradients/rainbow_gradient.tres"
+
+[node name="SceneManager" type="Node2D" groups=["GameManager"]]
+script = ExtResource("1_yswi4")
+default_gradient = SubResource("Resource_1s4jo")
+
+[node name="SceneChangeCooldown" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

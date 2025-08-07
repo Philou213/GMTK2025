@@ -1,0 +1,197 @@
+[gd_scene load_steps=15 format=3 uid="uid://iiopsl2jnac1"]
+
+[ext_resource type="Script" uid="uid://ctur3tbuj1of2" path="res://Scripts/main_menu.gd" id="1_2asjq"]
+[ext_resource type="Script" uid="uid://cq7cboq7cayw0" path="res://Scripts/Buttons/GamepadUI.gd" id="2_q8shq"]
+[ext_resource type="Script" uid="uid://dma16kredqnfv" path="res://Scripts/floating_ui.gd" id="2_y3dni"]
+[ext_resource type="PackedScene" uid="uid://b5dqpgdoeb6x" path="res://Scenes/Menus/Button.tscn" id="4_mxlt2"]
+[ext_resource type="Script" uid="uid://4p3jnl2x5gvd" path="res://Scripts/Buttons/play_btn.gd" id="4_q0me5"]
+[ext_resource type="Script" uid="uid://b01d6w35wcxmh" path="res://Scripts/Buttons/credits_btn.gd" id="5_tryhm"]
+[ext_resource type="Script" uid="uid://cy5kstx44hu8w" path="res://Scripts/Buttons/settings_btn.gd" id="6_7art6"]
+[ext_resource type="Script" uid="uid://buxa7ri4snkmb" path="res://Scripts/Buttons/exit_btn.gd" id="6_xfefy"]
+[ext_resource type="FontFile" uid="uid://b51e4e1htly8h" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="12_mb40c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mb40c"]
+resource_local_to_scene = true
+font = ExtResource("12_mb40c")
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mdbg0"]
+resource_local_to_scene = true
+font = ExtResource("12_mb40c")
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7r21k"]
+resource_local_to_scene = true
+font = ExtResource("12_mb40c")
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c638u"]
+resource_local_to_scene = true
+font = ExtResource("12_mb40c")
+font_size = 20
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7as8u"]
+resource_local_to_scene = true
+font = ExtResource("12_mb40c")
+font_size = 64
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="MainMenu" type="Node2D"]
+z_index = 15
+script = ExtResource("1_2asjq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MainMenu" type="Control" parent="." node_paths=PackedStringArray("FirstControl")]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 124.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.75428, 1.75428)
+script = ExtResource("2_q8shq")
+FirstControl = NodePath("VBoxContainer/CenterContainer/Play")
+metadata/_edit_horizontal_guides_ = [695.0]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = -70.6843
+offset_right = 105.0
+offset_bottom = 199.316
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="CenterContainer" type="Control" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(210, 45)
+layout_mode = 2
+script = ExtResource("2_y3dni")
+vertical_intensity = 7.0
+horizontal_speed = 0.25
+
+[node name="Play" parent="MainMenu/VBoxContainer/CenterContainer" instance=ExtResource("4_mxlt2")]
+layout_mode = 1
+offset_left = -171.0
+offset_right = 171.0
+pivot_offset = Vector2(170.43, 21.6613)
+script = ExtResource("4_q0me5")
+
+[node name="Label" parent="MainMenu/VBoxContainer/CenterContainer/Play" index="0"]
+text = "PLAY"
+label_settings = SubResource("LabelSettings_mb40c")
+
+[node name="CenterContainer2" type="Control" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(210, 45)
+layout_mode = 2
+script = ExtResource("2_y3dni")
+vertical_intensity = 7.0
+horizontal_speed = 0.25
+
+[node name="Credits" parent="MainMenu/VBoxContainer/CenterContainer2" instance=ExtResource("4_mxlt2")]
+layout_mode = 1
+offset_left = -171.0
+offset_right = 171.0
+pivot_offset = Vector2(169.414, 19.0557)
+script = ExtResource("5_tryhm")
+
+[node name="Label" parent="MainMenu/VBoxContainer/CenterContainer2/Credits" index="0"]
+text = "CREDITS"
+label_settings = SubResource("LabelSettings_mdbg0")
+
+[node name="CenterContainer4" type="Control" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(210, 45)
+layout_mode = 2
+script = ExtResource("2_y3dni")
+vertical_intensity = 7.0
+horizontal_speed = 0.25
+
+[node name="Settings" parent="MainMenu/VBoxContainer/CenterContainer4" instance=ExtResource("4_mxlt2")]
+layout_mode = 1
+offset_left = -171.0
+offset_right = 171.0
+pivot_offset = Vector2(168.844, 22.7205)
+script = ExtResource("6_7art6")
+
+[node name="Label" parent="MainMenu/VBoxContainer/CenterContainer4/Settings" index="0"]
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_7r21k")
+
+[node name="CenterContainer3" type="Control" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(210, 45)
+layout_mode = 2
+script = ExtResource("2_y3dni")
+vertical_intensity = 7.0
+horizontal_speed = 0.25
+
+[node name="Exit" parent="MainMenu/VBoxContainer/CenterContainer3" instance=ExtResource("4_mxlt2")]
+layout_mode = 1
+offset_left = -171.0
+offset_right = 171.0
+pivot_offset = Vector2(168.844, 21.825)
+script = ExtResource("6_xfefy")
+
+[node name="Label" parent="MainMenu/VBoxContainer/CenterContainer3/Exit" index="0"]
+text = "EXIT"
+label_settings = SubResource("LabelSettings_c638u")
+
+[node name="Piece" type="Control" parent="MainMenu"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -274.0
+offset_top = -236.0
+offset_right = -234.0
+offset_bottom = -196.0
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_y3dni")
+vertical_intensity = 14.0
+horizontal_intensity = 10
+
+[node name="Label" type="Label" parent="MainMenu/Piece"]
+layout_mode = 0
+offset_left = -175.059
+offset_top = -66.8764
+offset_right = 912.941
+offset_bottom = -2.87638
+text = "Recursive Conflict"
+label_settings = SubResource("LabelSettings_7as8u")
+horizontal_alignment = 1
+
+[editable path="MainMenu/VBoxContainer/CenterContainer/Play"]
+[editable path="MainMenu/VBoxContainer/CenterContainer2/Credits"]
+[editable path="MainMenu/VBoxContainer/CenterContainer4/Settings"]
+[editable path="MainMenu/VBoxContainer/CenterContainer3/Exit"]

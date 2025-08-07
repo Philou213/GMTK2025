@@ -1,0 +1,27 @@
+"AppBuild"
+{
+    "AppID" "$APP_ID"
+    "Desc" "$TAG"
+    "ContentRoot" "build"
+    "Depots"
+    {
+        "$DEPOT_WIN"
+        {
+            "FileMapping"
+            {
+                "LocalPath" "windows/*"
+                "DepotPath" "."
+                "recursive" "1"
+            }
+        }
+        "$DEPOT_LINUX"
+        {
+            "FileMapping"
+            {
+                "LocalPath" "linux/*"
+                "DepotPath" "."
+                "recursive" "1"
+            }
+        }
+    }
+}

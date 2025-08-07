@@ -1,0 +1,142 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqpllpttx4007"]
+
+[ext_resource type="PackedScene" uid="uid://c8s44ierjta41" path="res://Scenes/Players/Player.tscn" id="1_gxnw2"]
+[ext_resource type="Script" uid="uid://siscm8h1bkdk" path="res://Scenes/Levels/level_manager.gd" id="1_kbv3w"]
+[ext_resource type="PackedScene" uid="uid://dxhhjae5lsxpn" path="res://Scenes/Players/bulletPool.tscn" id="2_pxm5p"]
+[ext_resource type="PackedScene" uid="uid://chjfk0pkwd6vf" path="res://Scenes/Players/flag.tscn" id="3_elv66"]
+[ext_resource type="PackedScene" uid="uid://s07otxsstpk0" path="res://Scenes/Players/Walls.tscn" id="4_ld47c"]
+[ext_resource type="PackedScene" uid="uid://c8qoy63y1veek" path="res://Scenes/Players/ExtractArea.tscn" id="6_0b7dm"]
+[ext_resource type="FontFile" uid="uid://b51e4e1htly8h" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="7_bojks"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bojks"]
+resource_local_to_scene = true
+font = ExtResource("7_bojks")
+font_size = 128
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dbq0w"]
+resource_local_to_scene = true
+font = ExtResource("7_bojks")
+font_size = 32
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hiwde"]
+resource_local_to_scene = true
+font = ExtResource("7_bojks")
+font_size = 28
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="Default2dLevel" type="Node2D"]
+script = ExtResource("1_kbv3w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1743.0
+offset_top = -1053.0
+offset_right = 1975.0
+offset_bottom = 1221.0
+color = Color(0, 0, 0, 1)
+
+[node name="LabelWaves" type="Label" parent="."]
+z_as_relative = false
+offset_left = -212.0
+offset_top = -709.0
+offset_right = 208.0
+offset_bottom = -581.0
+text = "1"
+label_settings = SubResource("LabelSettings_bojks")
+horizontal_alignment = 1
+
+[node name="PersonalBestLAbel" type="Label" parent="."]
+z_as_relative = false
+offset_left = -65.0
+offset_top = -586.0
+offset_right = 63.0
+offset_bottom = -547.0
+text = "PB:0"
+label_settings = SubResource("LabelSettings_dbq0w")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = -575.0
+offset_top = -494.0
+offset_right = 572.0
+offset_bottom = -466.0
+text = "Capture the box"
+label_settings = SubResource("LabelSettings_hiwde")
+horizontal_alignment = 1
+
+[node name="LabelTutorial" type="RichTextLabel" parent="."]
+offset_left = -461.0
+offset_top = 88.0
+offset_right = 461.0
+offset_bottom = 223.0
+theme_override_fonts/normal_font = ExtResource("7_bojks")
+theme_override_font_sizes/normal_font_size = 34
+bbcode_enabled = true
+text = "[img=34]Assets/Sprites/Glyphs/W.tres[img=34]Assets/Sprites/Glyphs/A.tres[img=34]Assets/Sprites/Glyphs/S.tres[img=34]Assets/Sprites/Glyphs/D.tres[/img] to move, 
+[img=34]Assets/Sprites/Glyphs/Mouse.tres[/img] and [img=34]Assets/Sprites/Glyphs/MouseLeft.tres[/img] to aim and shoot"
+horizontal_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("1_gxnw2")]
+position = Vector2(-1059, -6)
+gun_distance = 100.0
+
+[node name="BulletPool" parent="." instance=ExtResource("2_pxm5p")]
+
+[node name="Flag" parent="." groups=["flag"] instance=ExtResource("3_elv66")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Walls" parent="." instance=ExtResource("4_ld47c")]
+position = Vector2(-213, -741)
+scale = Vector2(3.16, 1)
+
+[node name="Walls2" parent="." instance=ExtResource("4_ld47c")]
+position = Vector2(63, 733)
+scale = Vector2(3.16, 1)
+
+[node name="Walls3" parent="." instance=ExtResource("4_ld47c")]
+position = Vector2(1300, 187)
+rotation = 1.5708
+scale = Vector2(3.16, 1)
+
+[node name="Walls4" parent="." instance=ExtResource("4_ld47c")]
+position = Vector2(-1292, 148)
+rotation = 1.5708
+scale = Vector2(3.16, 1)
+
+[node name="Extract" parent="." groups=["Extracts"] instance=ExtResource("6_0b7dm")]
+visible = false
+position = Vector2(45, 701)
+scale = Vector2(2.70641, 1)
+
+[node name="Extract2" parent="." groups=["Extracts"] instance=ExtResource("6_0b7dm")]
+visible = false
+position = Vector2(59, -739)
+scale = Vector2(2.70641, 1)
+
+[node name="Extract3" parent="." groups=["Extracts"] instance=ExtResource("6_0b7dm")]
+visible = false
+position = Vector2(1298, 349)
+rotation = 1.5708
+scale = Vector2(2.70641, 1)
+
+[node name="Extract4" parent="." groups=["Extracts"] instance=ExtResource("6_0b7dm")]
+visible = false
+position = Vector2(-1260, 251)
+rotation = 1.5708
+scale = Vector2(2.70641, 1)
+
+[connection signal="capture_flag_signal" from="Player" to="." method="_on_player_capture_flag_signal"]

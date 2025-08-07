@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://dc7xmob4qrc1k"]
+
+[ext_resource type="FontFile" uid="uid://b51e4e1htly8h" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="2_detqq"]
+[ext_resource type="PackedScene" uid="uid://c8s44ierjta41" path="res://Scenes/Players/Player.tscn" id="3_yo840"]
+[ext_resource type="PackedScene" uid="uid://dxhhjae5lsxpn" path="res://Scenes/Players/bulletPool.tscn" id="4_tao1a"]
+[ext_resource type="PackedScene" uid="uid://s07otxsstpk0" path="res://Scenes/Players/Walls.tscn" id="6_6h7jm"]
+[ext_resource type="PackedScene" uid="uid://bo73l65b1eorm" path="res://Scenes/Players/Ghost.tscn" id="6_lje5a"]
+[ext_resource type="PackedScene" uid="uid://cy7qapcjyf6d2" path="res://Scenes/Players/bullet.tscn" id="7_1yd5k"]
+[ext_resource type="PackedScene" uid="uid://c8qoy63y1veek" path="res://Scenes/Players/ExtractArea.tscn" id="7_eh4jw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1yd5k"]
+resource_local_to_scene = true
+font = ExtResource("2_detqq")
+font_size = 64
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 20
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="Default2dLevel" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1743.0
+offset_top = -1053.0
+offset_right = 1975.0
+offset_bottom = 1221.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -563.0
+offset_top = -458.0
+offset_right = 525.0
+offset_bottom = -394.0
+text = "Recursive Conflict"
+label_settings = SubResource("LabelSettings_1yd5k")
+horizontal_alignment = 1
+
+[node name="Player" parent="." instance=ExtResource("3_yo840")]
+position = Vector2(-289, -49)
+rotation = 0.49389
+script = null
+
+[node name="BulletPool" parent="." instance=ExtResource("4_tao1a")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Walls" parent="." instance=ExtResource("6_6h7jm")]
+position = Vector2(-213, -741)
+scale = Vector2(3.16, 1)
+
+[node name="Walls2" parent="." instance=ExtResource("6_6h7jm")]
+position = Vector2(63, 733)
+scale = Vector2(3.16, 1)
+
+[node name="Walls3" parent="." instance=ExtResource("6_6h7jm")]
+position = Vector2(1300, 187)
+rotation = 1.5708
+scale = Vector2(3.16, 1)
+
+[node name="Walls4" parent="." instance=ExtResource("6_6h7jm")]
+position = Vector2(-1292, 148)
+rotation = 1.5708
+scale = Vector2(3.16, 1)
+
+[node name="Extract" parent="." groups=["Extracts"] instance=ExtResource("7_eh4jw")]
+visible = false
+position = Vector2(45, 701)
+scale = Vector2(2.70641, 1)
+
+[node name="Extract2" parent="." groups=["Extracts"] instance=ExtResource("7_eh4jw")]
+visible = false
+position = Vector2(59, -739)
+scale = Vector2(2.70641, 1)
+
+[node name="Extract3" parent="." groups=["Extracts"] instance=ExtResource("7_eh4jw")]
+visible = false
+position = Vector2(1298, 349)
+rotation = 1.5708
+scale = Vector2(2.70641, 1)
+
+[node name="Extract4" parent="." groups=["Extracts"] instance=ExtResource("7_eh4jw")]
+visible = false
+position = Vector2(-1260, 251)
+rotation = 1.5708
+scale = Vector2(2.70641, 1)
+
+[node name="Ghost" parent="." instance=ExtResource("6_lje5a")]
+position = Vector2(296, -150)
+rotation = 2.94182
+script = null
+
+[node name="Ghost2" parent="." instance=ExtResource("6_lje5a")]
+position = Vector2(161, 168)
+rotation = 3.83381
+script = null
+
+[node name="Bullet" parent="." instance=ExtResource("7_1yd5k")]
+position = Vector2(-236, -22)
+script = null
+
+[node name="Bullet2" parent="." instance=ExtResource("7_1yd5k")]
+position = Vector2(-179, 15)
+rotation = -2.71006
+script = null
+
+[node name="Bullet3" parent="." instance=ExtResource("7_1yd5k")]
+position = Vector2(111, -115)
+rotation = -2.71006
+script = null
+
+[node name="Bullet5" parent="." instance=ExtResource("7_1yd5k")]
+position = Vector2(95, 118)
+rotation = -2.71006
+script = null
+
+[node name="Bullet6" parent="." instance=ExtResource("7_1yd5k")]
+position = Vector2(41, 80)
+rotation = -2.71006
+script = null
+
+[node name="Bullet4" parent="." instance=ExtResource("7_1yd5k")]
+position = Vector2(177, -128)
+rotation = -2.71006
+script = null

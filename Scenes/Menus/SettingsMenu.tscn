@@ -1,0 +1,341 @@
+[gd_scene load_steps=18 format=3 uid="uid://dbl6sigulrew8"]
+
+[ext_resource type="Script" uid="uid://cq7cboq7cayw0" path="res://Scripts/Buttons/GamepadUI.gd" id="1_f2mn3"]
+[ext_resource type="FontFile" uid="uid://b51e4e1htly8h" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="2_clsxa"]
+[ext_resource type="Script" uid="uid://dma16kredqnfv" path="res://Scripts/floating_ui.gd" id="3_jponv"]
+[ext_resource type="PackedScene" uid="uid://dwg5gvl6rrjeg" path="res://Scenes/Menus/BackButton.tscn" id="4_4ydkw"]
+[ext_resource type="Script" uid="uid://4hp2gv8hlsue" path="res://Scripts/settings_menu.gd" id="5_a5ffe"]
+[ext_resource type="Script" uid="uid://bqqupisq6shwj" path="res://Scripts/floating_section.gd" id="6_oeq6h"]
+[ext_resource type="LabelSettings" uid="uid://cw355ejs16c6d" path="res://Assets/Fonts/label_settings.tres" id="7_snvv8"]
+[ext_resource type="Script" uid="uid://45mdjew0u1uj" path="res://Scripts/SettingsTab.gd" id="8_uraa8"]
+[ext_resource type="Texture2D" uid="uid://c8xwe1haxe6yd" path="res://Assets/Sprites/Glyphs/NINTENDO/GamepadLB.tres" id="9_rvsk0"]
+[ext_resource type="Script" uid="uid://cig5dj5u838s3" path="res://Scripts/Menu_tabs_button.gd" id="9_w6sgq"]
+[ext_resource type="Script" uid="uid://spxhbbc7866n" path="res://Scripts/Buttons/settings_parameter_btn.gd" id="9_xieh2"]
+[ext_resource type="Script" uid="uid://cqmp2awys3bpx" path="res://Scripts/Buttons/options_btn.gd" id="9_ytaa6"]
+[ext_resource type="Texture2D" uid="uid://cyo8gub1wlnwm" path="res://Assets/Sprites/Glyphs/NINTENDO/GamepadRB.tres" id="10_c1hai"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lwssg"]
+font = ExtResource("2_clsxa")
+font_size = 46
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wjbr7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3tyqm"]
+font = ExtResource("2_clsxa")
+font_size = 40
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wsq6o"]
+font = ExtResource("2_clsxa")
+font_size = 40
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="Settings" type="Node2D"]
+z_index = 15
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Settings" type="Control" parent="."]
+layout_mode = 3
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1136.0
+offset_top = -564.0
+offset_right = -1136.0
+offset_bottom = -564.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_f2mn3")
+
+[node name="Title" type="Label" parent="Settings"]
+layout_mode = 2
+offset_left = 309.0
+offset_top = -15.5
+offset_right = 830.0
+offset_bottom = 72.5
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("2_clsxa")
+theme_override_font_sizes/font_size = 56
+text = "SETTINGS"
+label_settings = SubResource("LabelSettings_lwssg")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_jponv")
+
+[node name="Back" parent="Settings" instance=ExtResource("4_4ydkw")]
+offset_left = -69.0
+offset_top = -33.5
+offset_right = -69.0
+offset_bottom = -33.5
+pivot_offset = Vector2(118, 21.5)
+
+[node name="TabContainer" type="TabContainer" parent="Settings"]
+custom_minimum_size = Vector2(800, 300)
+layout_mode = 0
+offset_left = 170.5
+offset_top = 111.5
+offset_right = 970.5
+offset_bottom = 561.5
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_clsxa")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wjbr7")
+tab_alignment = 1
+current_tab = 0
+tab_focus_mode = 0
+script = ExtResource("5_a5ffe")
+popupItemFont = ExtResource("2_clsxa")
+
+[node name="VIDEO" type="MarginContainer" parent="Settings/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = -100
+metadata/_tab_index = 0
+
+[node name="VIDEO" type="VBoxContainer" parent="Settings/TabContainer/VIDEO"]
+layout_mode = 2
+theme_override_constants/separation = 50
+script = ExtResource("8_uraa8")
+
+[node name="VideoSubtitle" type="Label" parent="Settings/TabContainer/VIDEO/VIDEO"]
+layout_mode = 2
+text = "VIDEO"
+label_settings = SubResource("LabelSettings_3tyqm")
+horizontal_alignment = 1
+script = ExtResource("6_oeq6h")
+vertical_intensity = 5.0
+horizontal_intensity = 5
+initialize_position_on_start = false
+
+[node name="Items" type="VBoxContainer" parent="Settings/TabContainer/VIDEO/VIDEO"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Fullscreen" type="CenterContainer" parent="Settings/TabContainer/VIDEO/VIDEO/Items"]
+layout_mode = 2
+script = ExtResource("6_oeq6h")
+vertical_intensity = 2.5
+horizontal_intensity = 4
+initialize_position_on_start = false
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Settings/TabContainer/VIDEO/VIDEO/Items/Fullscreen"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Fullscreen" type="Label" parent="Settings/TabContainer/VIDEO/VIDEO/Items/Fullscreen/HSplitContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "FULLSCREEN"
+label_settings = ExtResource("7_snvv8")
+horizontal_alignment = 2
+
+[node name="FullscreenCheckBox" type="CheckButton" parent="Settings/TabContainer/VIDEO/VIDEO/Items/Fullscreen/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+mouse_default_cursor_shape = 2
+button_pressed = true
+script = ExtResource("9_xieh2")
+
+[node name="V-Sync" type="CenterContainer" parent="Settings/TabContainer/VIDEO/VIDEO/Items"]
+layout_mode = 2
+script = ExtResource("6_oeq6h")
+vertical_intensity = 2.5
+horizontal_intensity = 4
+initialize_position_on_start = false
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Settings/TabContainer/VIDEO/VIDEO/Items/V-Sync"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="Settings/TabContainer/VIDEO/VIDEO/Items/V-Sync/HSplitContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+text = "VSYNC"
+label_settings = ExtResource("7_snvv8")
+horizontal_alignment = 2
+
+[node name="VsyncSlider" type="OptionButton" parent="Settings/TabContainer/VIDEO/VIDEO/Items/V-Sync/HSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("2_clsxa")
+allow_reselect = true
+script = ExtResource("9_ytaa6")
+
+[node name="AUDIO" type="MarginContainer" parent="Settings/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = -100
+metadata/_tab_index = 1
+
+[node name="AUDIO" type="VBoxContainer" parent="Settings/TabContainer/AUDIO"]
+layout_mode = 2
+theme_override_constants/separation = 50
+script = ExtResource("8_uraa8")
+
+[node name="AudioSubtitle" type="Label" parent="Settings/TabContainer/AUDIO/AUDIO"]
+layout_mode = 2
+text = "AUDIO"
+label_settings = SubResource("LabelSettings_wsq6o")
+horizontal_alignment = 1
+script = ExtResource("6_oeq6h")
+vertical_intensity = 5.0
+horizontal_intensity = 5
+initialize_position_on_start = false
+
+[node name="Items" type="VBoxContainer" parent="Settings/TabContainer/AUDIO/AUDIO"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Master" type="CenterContainer" parent="Settings/TabContainer/AUDIO/AUDIO/Items"]
+layout_mode = 2
+script = ExtResource("6_oeq6h")
+vertical_intensity = 2.5
+horizontal_intensity = 4
+initialize_position_on_start = false
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Settings/TabContainer/AUDIO/AUDIO/Items/Master"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Resolution" type="Label" parent="Settings/TabContainer/AUDIO/AUDIO/Items/Master/HSplitContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "MASTER"
+label_settings = ExtResource("7_snvv8")
+horizontal_alignment = 2
+
+[node name="MasterSlider" type="HSlider" parent="Settings/TabContainer/AUDIO/AUDIO/Items/Master/HSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+max_value = 1.0
+step = 0.01
+script = ExtResource("9_xieh2")
+
+[node name="Music" type="CenterContainer" parent="Settings/TabContainer/AUDIO/AUDIO/Items"]
+layout_mode = 2
+script = ExtResource("6_oeq6h")
+vertical_intensity = 2.5
+horizontal_intensity = 4
+initialize_position_on_start = false
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Settings/TabContainer/AUDIO/AUDIO/Items/Music"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Resolution" type="Label" parent="Settings/TabContainer/AUDIO/AUDIO/Items/Music/HSplitContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "MUSIC"
+label_settings = ExtResource("7_snvv8")
+horizontal_alignment = 2
+
+[node name="MusicSlider" type="HSlider" parent="Settings/TabContainer/AUDIO/AUDIO/Items/Music/HSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+max_value = 1.0
+step = 0.01
+script = ExtResource("9_xieh2")
+
+[node name="SFX" type="CenterContainer" parent="Settings/TabContainer/AUDIO/AUDIO/Items"]
+layout_mode = 2
+script = ExtResource("6_oeq6h")
+vertical_intensity = 2.5
+horizontal_intensity = 4
+initialize_position_on_start = false
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Settings/TabContainer/AUDIO/AUDIO/Items/SFX"]
+layout_mode = 2
+dragger_visibility = 1
+
+[node name="Resolution" type="Label" parent="Settings/TabContainer/AUDIO/AUDIO/Items/SFX/HSplitContainer"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "SFX"
+label_settings = ExtResource("7_snvv8")
+horizontal_alignment = 2
+
+[node name="SFXSlider" type="HSlider" parent="Settings/TabContainer/AUDIO/AUDIO/Items/SFX/HSplitContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+max_value = 1.0
+step = 0.01
+script = ExtResource("9_xieh2")
+
+[node name="GamepadButtons" type="Control" parent="Settings"]
+visible = false
+anchors_preset = 0
+offset_top = -28.0
+offset_right = 40.0
+offset_bottom = 12.0
+script = ExtResource("9_w6sgq")
+
+[node name="LBButton" type="TextureRect" parent="Settings/GamepadButtons"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 115.0
+offset_right = 310.0
+offset_bottom = 155.0
+texture = ExtResource("9_rvsk0")
+script = ExtResource("3_jponv")
+vertical_speed = 0.1
+vertical_intensity = 5.0
+horizontal_speed = 0.5
+horizontal_intensity = 5
+
+[node name="RBButton" type="TextureRect" parent="Settings/GamepadButtons"]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 115.0
+offset_right = 870.0
+offset_bottom = 155.0
+texture = ExtResource("10_c1hai")
+script = ExtResource("3_jponv")
+vertical_speed = 0.1
+vertical_intensity = 5.0
+horizontal_speed = 0.5
+horizontal_intensity = 5
+
+[connection signal="pressed" from="Settings/Back/Button" to="Settings/TabContainer" method="_on_back_pressed"]
+[connection signal="tab_changed" from="Settings/TabContainer" to="Settings/TabContainer" method="_on_tab_changed"]
+[connection signal="update_first_input" from="Settings/TabContainer" to="Settings" method="_on_tab_container_update_first_input"]
+[connection signal="visibility_changed" from="Settings/TabContainer/VIDEO/VIDEO" to="Settings/TabContainer/VIDEO/VIDEO" method="_on_visibility_changed"]
+[connection signal="pressed" from="Settings/TabContainer/VIDEO/VIDEO/Items/Fullscreen/HSplitContainer/FullscreenCheckBox" to="Settings/TabContainer/VIDEO/VIDEO/Items/Fullscreen/HSplitContainer/FullscreenCheckBox" method="_on_pressed"]
+[connection signal="toggled" from="Settings/TabContainer/VIDEO/VIDEO/Items/Fullscreen/HSplitContainer/FullscreenCheckBox" to="Settings/TabContainer" method="_on_fullscreen_check_box_toggled"]
+[connection signal="item_selected" from="Settings/TabContainer/VIDEO/VIDEO/Items/V-Sync/HSplitContainer/VsyncSlider" to="Settings/TabContainer" method="_on_vsync_slider_item_selected"]
+[connection signal="item_selected" from="Settings/TabContainer/VIDEO/VIDEO/Items/V-Sync/HSplitContainer/VsyncSlider" to="Settings/TabContainer/VIDEO/VIDEO/Items/V-Sync/HSplitContainer/VsyncSlider" method="_on_item_selected"]
+[connection signal="pressed" from="Settings/TabContainer/VIDEO/VIDEO/Items/V-Sync/HSplitContainer/VsyncSlider" to="Settings/TabContainer/VIDEO/VIDEO/Items/V-Sync/HSplitContainer/VsyncSlider" method="_on_pressed"]
+[connection signal="visibility_changed" from="Settings/TabContainer/AUDIO/AUDIO" to="Settings/TabContainer/AUDIO/AUDIO" method="_on_visibility_changed"]
+[connection signal="value_changed" from="Settings/TabContainer/AUDIO/AUDIO/Items/Master/HSplitContainer/MasterSlider" to="Settings/TabContainer" method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="Settings/TabContainer/AUDIO/AUDIO/Items/Music/HSplitContainer/MusicSlider" to="Settings/TabContainer" method="_on_music_slider_value_changed"]
+[connection signal="drag_ended" from="Settings/TabContainer/AUDIO/AUDIO/Items/SFX/HSplitContainer/SFXSlider" to="Settings/TabContainer" method="_on_sfx_slider_drag_ended"]
+[connection signal="value_changed" from="Settings/TabContainer/AUDIO/AUDIO/Items/SFX/HSplitContainer/SFXSlider" to="Settings/TabContainer" method="_on_sfx_slider_value_changed"]
+
+[editable path="Settings/Back"]
